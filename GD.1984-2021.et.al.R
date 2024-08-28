@@ -1,6 +1,6 @@
 #Goldeneye long term anti-predator behaviour data analyses: 
 
-library(hmisc)
+library(Hmisc)
 library(ggplot2)
 library(ggeffects)
 library(lsmeans)
@@ -29,16 +29,6 @@ summary(COR)
 ## Initialize empty matrices to store p-values and correlation coefficients
 COR.P <- matrix(NA, nrow = ncol(COR), ncol = ncol(COR))
 COR.coefficients <- matrix(NA, nrow = ncol(COR), ncol = ncol(COR))
-
-COR <- rcorr(as.matrix(GD.COR), type = "spearman")
-Clutch_Parasite_Rs <- COR$r["ClutchSize","Body.condition"]
-overall_Rs <- COR$r[1,2]
-p_clutch_parasite <-COR$P["ClutchSize","Body.condition"]
-p_value <- COR$P[1,2]
-cat("Spearman correlation coefficient (Rs) between clutch size and nest parazitism:", Clutch_Parasite_Rs, "\n")
-cat("Overall Spearman correlation coefficient (Rs):", overall_Rs, "\n")
-cat("P-value of clutch size and nest parazitism :", p_clutch_parasite, "\n")
-cat("P-value:", p_value, "\n")
 
 # Loop through each variable pair to calculate p-values and correlation coefficients
 for (i in 1:ncol(GD.COR)) {
@@ -270,7 +260,7 @@ total_variance <- residual_var + var_random
 # Calculating the Coefficient of relavtive plasticity (CRP)/ICC as the proportion of variance in Behavior that can be attributed to differences among individuals
 CRP <- var_random / total_variance
 # Printing the CRP (Showing the ratio of variance component of the random effect for each individual in behavior to the overall behavioral variance in population)
-print(CRP) #CRP = σ^2_individual / (σ^2_individual + σ^2_residual) =X% of total variance in Behavior is due of among-individual difference 
+print(CRP) #CRP = Ï^2_individual / (Ï^2_individual + Ï^2_residual) =X% of total variance in Behavior is due of among-individual difference 
 
 
 #BUT, 3.3.2) SINCE Behavior is a categorical ordinal variable, it's best to use the "ICC/CRP" method without converting the data into numeric
